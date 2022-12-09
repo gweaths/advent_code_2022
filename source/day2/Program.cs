@@ -40,6 +40,7 @@ void Part2()
     }
 }
 
+Part1();
 Part2();
 
 //---- Private Methods -----
