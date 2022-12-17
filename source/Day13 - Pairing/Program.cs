@@ -35,7 +35,7 @@ void Part1()
         string[] packetStrings = pair.Split("\n");
         Packet p0 = Packet.Parse(packetStrings[0].Trim());
         Packet p1 = Packet.Parse(packetStrings[1].Trim());
-        // Console.WriteLine($"{p0} vs {p1}");
+
         if (p0.Compare(p1) <= 0)
         {
             sum += ix;

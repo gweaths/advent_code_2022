@@ -5,10 +5,10 @@ public abstract record Packet
     {
         return (this, other) switch
         {
-            (PacketInt p0, PacketInt p1) => Math.Sign(p0.Val - p1.Val),
-            (PacketInt p0, _) => p0.Promote().Compare(other),
-            (_, PacketInt p1) => this.Compare(p1.Promote()),
             (PacketList p0, PacketList p1) => CompareLists(p0.Packets, p1.Packets),
+            (PacketInt p0, PacketInt p1) => Math.Sign(p0.Val - p1.Val),
+            (_, PacketInt p1) => this.Compare(p1.ConvertToList()),
+            (PacketInt p0, _) => p0.ConvertToList().Compare(other),
             _ => throw new Exception($"Unexpected compare {this} with {other}"),
         };
     }
@@ -89,14 +89,7 @@ public abstract record Packet
 
 public record PacketList(List<Packet> Packets) : Packet
 {
-
     public PacketList(params Packet[] packets) : this(packets.ToList()) { }
-    public static List<Packet> Parse(char[] data, int ix)
-    {
-        List<Packet> ls = new List<Packet>();
-
-        return ls;
-    }
 
     public override string ToString()
     {
@@ -106,7 +99,7 @@ public record PacketList(List<Packet> Packets) : Packet
 
 public record PacketInt(int Val) : Packet
 {
-    public PacketList Promote()
+    public PacketList ConvertToList()
     {
         return new PacketList(this);
     }
