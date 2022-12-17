@@ -1,0 +1,7 @@
+### This is was tough one !
+
+## What algorithm did i use?
+
+Algorithm used was the Dijkstra algorithm pseudo , found [here](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm).
+
+Converted the algorithm pseudo into code and applied traversal and such.
